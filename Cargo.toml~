@@ -1,0 +1,19 @@
+[package]
+name = "c_in_rust"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "c_in_rust"
+path = "src/lib.rs"
+
+[[bin]]
+name = "c_in_rust"
+path = "src/main.rs"
+
+
+
+[dependencies]
+
+[build-dependencies]
+bindgen = "0.71.1"
