@@ -7,8 +7,8 @@ fn main() {
         .generate()
         .unwrap_or_else(|err| panic!("Failed to generate bindings: {err:?}"));
 
-    // let out_path = std::env::var("OUT_DIR").unwrap();
-    let out_path = "./";
+    let out_path = std::env::var("OUT_DIR").unwrap();
+    // let out_path = "./";
     let out_path = std::path::Path::new(&out_path);
 
     bindings
@@ -16,4 +16,10 @@ fn main() {
         .unwrap_or_else(|err| {
             println!("Failed to create the 'tweetnacl_bindings.rs' C header file: {err:?}")
         });
+
+    cc::Build::new()
+        .warnings(false)
+        .extra_warnings(false)
+        .file("tweetnacl.c")
+        .compile("tweetnacl");
 }
